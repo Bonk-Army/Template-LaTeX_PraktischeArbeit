@@ -1,0 +1,37 @@
+%======================================================================
+%                                              
+%	    /\                                        
+%	   /  \   ___ _ __ ___  _ __  _   _ _ __ ___  
+%	  / /\ \ / __| '__/ _ \| '_ \| | | | '_ ` _ \ 
+%	 / ____ \ (__| | | (_) | | | | |_| | | | | | |
+%	/_/    \_\___|_|  \___/|_| |_|\__, |_| |_| |_|
+% 	                              __/ |          
+%	                              |___/             
+%
+%----------------------------------------------------------------------
+% Author : Nico Holzhäuser
+% Descripton : Cover Page
+%======================================================================
+
+\chapter*{Abkürzungsverzeichnis} % chapter*{..} --> keine Nummer, kein "Kapitel"
+						         % Nicht ins Inhaltsverzeichnis
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}   % Damit das doch ins Inhaltsverzeichnis kommt
+
+% Hier werden die Abkürzungen definiert
+% 1-10 nur damit der Abstand default auf diese Länge gesetzt wird
+\begin{acronym}[12345678910]
+  	%\acro{Name}{Darstellung der Abkürzung}{Langform der Abkürzung}
+	\acro{WWW}[WWW]{World Wide Web}
+	\acro{Abk}[Abk.]{Abkürzung}
+	\acro{H2O}[\ensuremath{H_2O}]{Di-Hydrogen-Monoxid}
+	\acro{DHBW}[DHBW]{Duale Hochschule Baden-Württemberg}
+
+
+	% Folgendes benutzen, wenn der Plural einer Abk. benöigt wird
+	% \newacroplural{Name}{Darstellung der Abkürzung}{Langform der Abkürzung}
+	\newacroplural{Abk}[Abk-en]{Abkürzungen}
+
+	% Wenn neicht benutzt, erscheint diese Abk. nicht in der Liste
+	\acro{NUA}[]{Not Used Acronym}
+	
+\end{acronym}

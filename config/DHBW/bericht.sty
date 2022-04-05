@@ -1,0 +1,214 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Descr:       LaTeX Style für Vorlage für Berichte der DHBW-Karlsruhe
+%% Author:      Prof. Dr. Jürgen Vollmer, juergen.vollmer@dhbw-karlsruhe.de
+%% $Id: bericht.sty,v 1.25 2020/03/13 15:38:13 vollmer Exp $
+%% -*- coding: utf-8 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ACHTUNG, wenn man eine eigene Format-Datei benutzt dann werden Änderungen an bericht.sty
+%% erst wirksam, wenn die Format-Datei neu erzeugt wurde!!!
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{bericht}[2017/10/06 v1.2]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% needed packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}   % UTF8-Codierung
+\usepackage{babel}      % Sprachanpassungen für generierte Texte wie "Inhaltsverzeichnis" etc
+\usepackage[T1]{fontenc}% Interne LaTeX Codierungen
+\usepackage[dvipsnames,table,rgb]{xcolor} % Extending L A TEX’s color facilities
+\usepackage[babel, german=guillemets]{csquotes}   % Context sensitive quotation facilities.
+\usepackage{xspace}     % http://www.ctan.org/tex-archive/help/Catalogue/entries/xspace.html
+\usepackage{array}      % http://www.ctan.org/tex-archive/help/Catalogue/entries/array.html
+\usepackage{tabularx}   % http://www.ctan.org/tex-archive/help/Catalogue/entries/tabularx.html
+\usepackage{eurosym}    % \euro
+\usepackage{pdfpages}   % http://www.ctan.org/tex-archive/help/Catalogue/entries/pdfpages.html
+\usepackage{needspace}  % http://www.tex.ac.uk/cgi-bin/texfaq2html?label=nopagebrk
+\usepackage[
+	pdfa,
+	bookmarksopen,
+	bookmarksnumbered]{hyperref}
+\usepackage{bookmark}   % Bookmarks for hyperref
+\usepackage{graphicx}
+\usepackage[headings]{fullpage}
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{microtype}  % http://tug.ctan.org/tex-archive/macros/latex/contrib/microtype/
+\usepackage{lmodern}    % Computern-Modern Schriftfamilie
+\usepackage{amssymb}    % Symbole
+\usepackage{framed}     % Framed or shaded regions that can break across pages.
+		        % http://dante.ctan.org/tex-archive/help/Catalogue/entries/framed.html
+			% Benutzung siehe erklaerung.tex
+
+\usepackage{wrapfig}    % Bilder von textumfliessen lassen
+
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny,textwidth=20mm]{todonotes}
+                        % Einfache Verwaltung und Erstellung von TODO's Markierungen
+			% http://tug.ctan.org/tex-archive/macros/latex/contrib/todonotes/
+			% wichtige Paket-Optionen: disable
+
+\usepackage{makeidx}    % Erstellung eines Indexes
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% eigene Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\email}[1]{\href{mailto:#1}{\textless#1\textgreater}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% citation, bibliography, BIBLATEX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Wer etwas mehr "Kontrolle" über das Aussehen der Referenzen haben möchte, kann
+% auch das "biblatex"-Paket benutzen.
+\usepackage{etoolbox}  % http://dante.ctan.org/tex-archive/help/Catalogue/entries/etoolbox.html
+\usepackage[
+	hyperref=true,          % Klickbare Referenzen in der PDF-Datei
+        backref=true,           % In der Literaturref. die Seiten angeben, wo ein \cite dazu steht
+        bibencoding=inputenc,   % s. inputenc-Paket
+	style=authoryear-comp,
+        backend=bibtex,
+	sorting=nty]{biblatex}  % http://dante.ctan.org/tex-archive/help/Catalogue/entries/biblatex.html
+\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
+
+% Abstand der einzelnen Einträge in der Literaturangaben
+\renewcommand{\bibitemsep}{1ex}
+
+% Welche Klammern soll \parencite{..} benutzen?
+\renewcommand{\bibleftparen}{[}
+\renewcommand{\bibrightparen}{]}
+
+% biblatex's \cite{..} gibt "normalerweise" keine Klammern um die Referenz aus
+% \parencite{..} gibt Klammern aus (die oben definiert sind)
+% Damit das "normale" Verhalten andere BibTeX-Stile realisiert wird, d.h. \cite{..}
+% gibt Klammen aus, wird folgendes definiert:
+% "Merke" ursprünliche Definition unter neuem Namen
+\let\citeNoParen\cite
+% "Redefiniere" \cite:
+\let\cite\parencite
+
+% Meine speziellen \cite-Kommandos:
+% Ausgabe des Untertitels (SUBTITLE) Feldes einer Referenz
+\DeclareCiteCommand{\citesubtitle}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\indexfield{indextitle}%
+   \printfield[citetitle]{subtitle}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Ausgabe des Titels (TITLE) Feldes und der Referenz
+\DeclareCiteCommand{\citetitleref}
+  {\booltrue{citetracker}%
+   \booltrue{pagetracker}%
+   \usebibmacro{prenote}}
+  {\indexfield{indextitle}%
+   \printfield[citetitle]{title} \cite{\thefield{entrykey}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% wie citetitleref, nur als Fussnote
+\DeclareCiteCommand{\citetitlerefFootnote}
+  {}
+  {\footnote{\citetitleref{\thefield{entrykey}}}}
+  {}
+  {}
+
+
+% Ausgabe der URL im HOWPUBLISHED Feld
+% Referenzieren von URL's, Format in der *.bib-Datei
+%@MISC{key,
+%  AUTHOR	= "....",
+%  TITLE	= "Webseite....",
+%  HOWPUBLISHED = "\url{http://www.domain.tld}",
+%  YEAR		= YYYY,    % Jahr  der Einsichtname, YYYY = Jahreszahl 4 Stellog
+%  MONTH	= ABC      % Monat der Einsichtnahme (jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov. dec
+%}
+\DeclareCiteCommand{\citeurl}
+  {\booltrue{citetracker}%
+   \booltrue{pagetracker}%
+   \usebibmacro{prenote}}
+  {\indexfield{indextitle}%
+   \printfield[citetitle]{howpublished}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Ausgabe der URL im HOWPUBLISHED Feld und Referenz
+\DeclareCiteCommand{\citeurlref}
+  {\booltrue{citetracker}%
+   \booltrue{pagetracker}%
+   \usebibmacro{prenote}}
+  {\indexfield{indextitle}%
+   \printfield[citetitle]{howpublished} \cite{\thefield{entrykey}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% Augabe: Vorname Nachname des Autors
+\DeclareCiteCommand{\citefullauthor}
+  {\booltrue{citetracker}%
+   \booltrue{pagetracker}%
+   \usebibmacro{prenote}}
+  {\indexfield{indextitle}%
+    \textsc{\printnames[byeditor]{author}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programmlistings setzen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}   % http://www.ctan.org/tex-archive/macros/latex/contrib/listings/
+
+% Wie sollen die Überschriften benannt werden:
+\renewcommand{\lstlistingname}{Algorithmus}
+
+% Wie die Liste der Listings, s. \lstlistoflistings in bericht.tex
+\renewcommand{\lstlistlistingname}{Liste der Algorithmen}
+
+% So kann man einen Stil für alle  Algorithmen definieren
+\lstdefinestyle{algoBericht}{
+  numbers=left,              % Zeilennummern einfügen
+  numberstyle=\tiny,         % wie werden sie gesetzt
+  numbersep=5pt,             % Abstand der Nummern zum Text
+  numberblanklines=false,    % bei Leerzeilen keine Nummer ausgeben (aber zählen)
+  basicstyle=\sffamily\small,         % Wie soll der Algorithmus gesetzt werden
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abkürzungen, http://www.ctan.org/tex-archive/macros/latex/contrib/acronym/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[printonlyused,withpage]{acronym}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Formelverzeichnis, Dank an Andy Nöltner <ANoeltner@lstelcom.com>
+% Leider versursacht float zusammen mit Hyperref Warnungen
+% siehe http://www.tex.ac.uk/cgi-bin/texfaq2html?label=hyperdupdest
+% Wenn also das Formelverzeichnis nicht benötigt, dann das folgende
+% auskommentieren
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tocloft}
+\newcommand{\listequationsname}{Formelverzeichnis}
+\newlistof{equations}{equ}{\listequationsname}
+
+\newcommand{\eqdesc}[1]{%
+	\csname phantomsection\endcsname % if hyperref is loaded
+	\addcontentsline{equ}{equations}{\protect\numberline{\theequation}#1}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Definitionen mit Ausgabe im Index
+% gibt #2 aus und fügt #1 bzw. #2 (wenn #1 nicht angegeben) in den Index ein
+\newcommand{\Def}[2][]{%
+   \def\OPTARG{#1}%
+   \def\EMPTY{}%
+   \ifx\OPTARG\EMPTY\index{#2}\else\index{#1}\fi%
+   \textbf{#2}\xspace%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
+%%
+%% End of file `bericht.sty'.

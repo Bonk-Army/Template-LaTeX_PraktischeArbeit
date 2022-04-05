@@ -1,0 +1,313 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Descr:       Vorlage für Berichte der DHBW-Karlsruhe, Ein Kapitel
+%% Author:      Prof. Dr. Jürgen Vollmer, vollmer@dhbw-karlsruhe.de
+%% $Id: kapitel1.tex,v 1.24 2020/03/13 16:02:34 vollmer Exp $
+%% -*- coding: utf-8 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Einleitung}
+
+\section{Dateien}
+Diese Vorlage umfasst folgende Dateien:
+\begin{description}
+\item[bericht.tex] Die Haupt-\TeX-Datei. Hier werden die Einstellungen für das
+     Deckblatt vorgenommen.
+\item[bericht.sty] Die benötigten \LaTeX-Pakete werden hier aufgelistet. Eigene Macros definiert.
+\item[bericht.bib] Die Bib\TeX\ "`Datenbank"' für die Literaturreferenzen.
+\item[abk.tex] \LaTeX-Datei, welche Abkürzungen definiert.
+\item[kapitel1.tex] \LaTeX-Datei für das 1. Kapitel.
+\item[kapitel2.tex] \LaTeX-Datei für das 2. Kapitel.
+\item[dhbw-logo.png] Das Logo der DHBW-Karlsruhe.
+\item[lowe.png] Das \LaTeX-Maskottchen.
+\item[Makefile] Zum Erzeugen der PDF-Ausgabe.
+\item[Pakete] Das Verzeichnis enthält einige Pakete, die u.\,U.\,unter \emph{Unix} nicht installiert
+     sind. Wenn \LaTeX\ also darüber beklagt, daß Pakete fehlen, folgen Sie den Installationsanweisungen
+     der Pakete. Prüfen Sie, ob es neuere Versionen der Pakte gibt. In der Datei
+     \texttt{bericht.sty} sind entsprechende Links auf die Quellen im Internet angegeben.
+
+     Wenn Sie unter \emph{Microsoft Windows} bei der Installation
+     \enquote{Install missing packages on the fly $\longrightarrow$ YES} ausgewählt haben,
+     werden fehlende Pakete automatisch installiert.
+\item[README.txt] Siehe Listing~\ref{fig-readme}.
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Erzeugen der PDF-Dateien}
+
+\subsection{Unix + Kommandozeile}
+Die Programmaufrufe zum Erzeugen der \Def{PDF-Datei} unter \emph{Unix}
+sind im \texttt{Makefile} angegeben. Im Wsentlichen ruft man in der Konsole das Kommando
+\texttt{pdflatex bericht}. Damit alle Referenzen innerhalb des Textes, die Seitennummern,
+die Literaturreferenzen etc.\,korrekt ausgegeben werden, muss man \LaTeX mindestens dreimal hintereinander aufrufen.
+\begin{verbatim}
+   pdflatex bericht
+   bibtex   bericht
+   makeindex -s bericht.ist bericht
+   pdflatex bericht
+   pdflatex bericht
+\end{verbatim}
+Dieser vollständgige Zyklus ist aber für's \enquote{Probelesen} nicht nötig.
+\texttt{bibtex}  erzeugt die Lieteraturreferenzen, \texttt{makeindex} erstellt den Index.
+
+\subsection{Andere}
+Unter \emph{Microsoft Windows} öffnen Sie die Datei \emph{bericht.tex} im \emph{TexnicCenter}.
+In vielen Betriebsystemen gibt es auch graphische Oberflächen zur Erstellung von Texten mit \LaTeX,
+diese erzeugen dann die PDF-Dateien -- ebenfalls durch Aufruf eines entsprechenden
+Konsolenprogrammes, allerdings \enquote{unsichtbar} für den Benutzer.
+
+\subsection{Geht's nicht etwas fixer? Eigene Formatdatei}
+Das Einlesen aller eingebundenen Pakete pro Aufruf von \texttt{pdflatex} kann mitunter
+\enquote{etwas dauern}. Dies lässt sich beschleunigen, indem man eine eigene \enquote{Formatdatei}
+\index{Formatdatei} \texttt{bericht.fmt} erzeugt, diese enthält ein vorkomplierte \enquote{Version}
+der Pakete. Damit \texttt{pdflatex} diese vorkompilierte Datei benutzt, muss in der ersten Zeile der
+\texttt{bericht.tex} Datei folgende Zeile stehen:
+\begin{verbatim}
+%&bericht
+\end{verbatim}
+gefolgt von einer \index{Leerzeile}. Existiert die Datei \texttt{bericht.fmt} nicht, werden die Pakete
+\enquote{wie üblich} einzeln eingebunden.
+
+Damit \texttt{pdflatex} \enquote{weiss} was alles vorübersetzt werden soll, muss in
+\texttt{bericht.tex} folgende Zeile stehen
+\begin{verbatim}
+\csname endofdump\endcsname
+\end{verbatim}
+ACHTUNG, wenn man eine eigene Formatdatei benutzt, werden Änderungen an \texttt{bericht.sty}
+erst wirksam, wenn die Format-Datei neu erzeugt wurde!
+Genauer alle Änderungen, die textuell vor  der Zeile \texttt{$\dots$ endofdump $\dots$} stehen,
+werden erst wirksam, wenn die Formatdatei neu erzeugt wurde
+
+Das Kommando zum Erzeugen der Formatdatei lautet:
+\begin{verbatim}
+   pdflatex -ini -jobname=bericht  "&pdflatex" mylatexformat.ltx bericht.tex
+\end{verbatim}
+Weitere Infos finden Sie auf den hier\footnote{
+\url{https://tex.stackexchange.com/questions/79493/ultrafast-pdflatex-with-precompiling} und\\
+\url{https://ctan.org/pkg/mylatexformat}}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Einfügen von Bildern und Querverweise im Text}
+
+\index{Bilder}
+
+Abb.~\ref{fig-loewe} auf Seite~\pageref{fig-loewe} zeigt das \LaTeX-Maskottchen.
+\begin{figure}[htbp]
+\centering
+\fbox{\includegraphics[height=0.3\textheight,angle=270]{./config/DHBW/lion}}
+\caption{\label{fig-loewe}Der \LaTeX-Löwe}
+\end{figure}
+
+Die Benutzung des \texttt{varioref}-Paketes macht das Benutzen von Referenzen einfacher.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Literaturreferenzen}
+
+\LaTeX\ \cite{lamport.1995a} basiert auf \TeX \cite{knuth.1984a}.
+Die Literaturreferenzen werden von Bib\TeX verwaltet.
+
+Hier ein Beispiel des Zitierens von Web-Seiten
+\cite{dante.2010a} ist der Anlaufpunkt für \LaTeX\ in Deutschland.
+
+URLs zitieren kann man so \cite{dante.2010a} machen.
+
+\section{Literaturreferenzen mit dem Bib\LaTeX-Paket}
+
+\index{Literaturreferenz}
+Das Bib\LaTeX-Paket erlaubt eine deutlich komfortableren Zugriff auf Einträge der
+BiB\TeX-"`Datenbank"' als die einfachen Bib\TeX-Stile. Allerdings ist das \texttt{bibtex}-Paket
+nicht standard mässig installiert. Es muß zusammen mit dem \texttt{etoolbox}-Paket installiert
+werden, s.\
+\url{http://dante.ctan.org/tex-archive/help/Catalogue/entries/etoolbox.html} und\\
+\url{http://dante.ctan.org/tex-archive/help/Catalogue/entries/biblatex.html}.
+
+
+% Nur mit BIBLATEX
+Ein Beispiel was man mit Bib\LaTeX\ machen kann (siehe auch \texttt{bericht.s}).
+
+\citefullauthor{knuth.1984a} hat in seinem wegeweisenden Buch
+\citetitle{knuth.1984a} aus dem Jahr \citeyear{knuth.1984a}
+die Grundlagen von \TeX\ gelegt.
+
+% nur mit BIBLATEX:
+Nur die URL angeben: \citeurl{dante.2010a} oder URL mit Referenz:
+\citeurlref{dante.2010a}, oder eben "`einfach"' wie oben gezeigt.
+
+Tabelle~\ref{bibtex-macros} zeigt die wichtigsten Macros.
+\begin{table}
+\begin{center}
+\small
+\begin{tabular}{|l|l|l|}\hline
+\multicolumn{1}{|c}{Macro}        & \multicolumn{1}{|c}{Bedeutung} &    \multicolumn{1}{|c|}{Beispiel} \\\hline\hline
+\verb+\cite{referenz}+            & Ausgabe der Referenz           & \cite{knuth.1984a}             \\
+\verb+\citetitle{referenz}+       & Ausgabe der Titels             & \citetitle{knuth.1984a}        \\
+\verb+\citefullauthor{referenz}+  & Ausgabe der Autors             & \citefullauthor{knuth.1984a}   \\
+\verb+\citeyear{referenz}+        & Ausgabe der Jahres             & \citeyear{knuth.1984a}         \\\hline
+\multicolumn{3}{|c|}{Internet-Resourcen referenezieren}                                             \\\hline
+\verb+\citeurl{referenz}+         & Referenz auf eine URL          & \citeurl{dante.2010a}          \\
+\verb+\citeurlref{referenz}+      & URL  mit Referenz              & \citeurlref{dante.2010a}       \\\hline
+\end{tabular}
+\end{center}
+\caption{\label{bibtex-macros}Macros für die Literaturrefrenzen}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Quellcodelistings}
+
+\Def[Quellcodelisting]{Quellcodelistings} können mit dem \texttt{listings}-Paket gesetzt werden.
+Es können Dateien direkt inkludiert werden, wie das \texttt{Makefile} aus
+Listing~\ref{algo-makefile}, oder in der \LaTeX-Datei angegeben werden (siehe
+Listing~\ref{algo-quicksort}).
+\newpage
+
+% Inkludiere eine Programmdatei
+\lstinputlisting[language=make,         % Welche Sprache, see listings-Dokumentation
+                 style=algoBericht,     % Benutze oben definierten Stil
+                 label={algo-makefile}, % Label für \ref{..}
+                 basicstyle=\tiny\sffamily,
+                 captionpos=b,
+		 caption={Das Makefile}]{./zfiles/Code/Sonstiges/Makefile} % Überschrift, Dateiname der zu inkludieren Datei
+% ACHTUNG: ProTeXT / Windows hat hier ein Bug: "Makefile" ohne Punkt am Ende wird nicht gefunden.
+%          ($%&/ DOS-Legacy :-(
+%          Daher muss für Linux eine Datei "Makefile." (mit Punkt am Ende) als Symlink auf "Makefile"
+%          angelegt werden und hier "Makefile." angegeben werden. Das ist nur notwendig,
+%          wenn der Dateiname keinen Suffix hat....
+
+% Setze Programm direkt
+\begin{lstlisting}[language=c,
+                   frame=single,           % Ein Rahmen um den Code
+                   framexleftmargin=15pt,  % Rahmen link von den Zahlen
+                   style=algoBericht,
+                   label={algo-quicksort},
+                   captionpos=b,           % Caption unter den Code setzen
+		   caption={quicksort in C}]
+void quicksort (int *a, int links, int rechts)
+/* sortiert die Elemente a[links] .. a[rechts] */
+{
+  /* partitioniere a[links] .. a[rechts] */
+  int m = (links + rechts) / 2 ;
+  int x = a[m];
+  int l = links, r = rechts;
+
+  while (l <= r) {
+    while (a[l] < x) l++;
+    printf ("von links: l=%d\n", l);
+    while (a[r] > x) r--;
+    printf ("von rechts: r=%d\n", r);
+
+    if (l <= r) {
+      int t = a[l]; a[l] = a[r]; a[r] = t;
+                                    /* a[l] <-> a[r] */
+      l++; r--;   /* "verschiebe Pfeile" */
+    }
+  }
+
+  /* Sortiere linken und rechten Teilarray */
+  if (links < r)      quicksort (a, links, r);
+  if (l     < rechts) quicksort (a, l,     rechts);
+}
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Benutzen von Abkürzungen}
+
+\acp{Abk} % Plural der Abkürzung
+werden mit dem \verb+acronym+-Paket veraltet.
+Jede
+\ac{Abk} % Singular
+wird in der Datei \texttt{abk.tex} definiert.
+Eine \ac{Abk} wird mit dem \verb+\ac{Abk}+  Macro benutzt. Beim ersten Auftreten
+wird der Langtext und in Klammern die zugehörige \Def{Abkürzung} ausgegeben. Bei allen
+folgenden Benutzungen wird nur die Abkürzung ausgegeben.
+
+Tabelle~\ref{acronym-macros} zeigt die wichtigsten Macros.
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{|ll|}\hline
+\verb+\acs{NAME}+  & immer die Kurzform: \acs{Abk}		\\
+\verb+\acl{NAME}+  & immer die Langform: \acl{Abk}		\\
+\verb+\acp{NAME}+  & Kurzform des Plurals: \acp{Abk}		\\
+\verb+\aclp{NAME}+ & immer Langform des Plurals: \aclp{Abk}	\\\hline
+\end{tabular}
+\end{center}
+\caption{\label{acronym-macros}Macros für Abkürzungen}
+\end{table}
+
+Ein Beispiel, welches zeigt, daß auch Formeln als \acp{Abk} benutzt werden können:\\
+\ac{H2O} ist ein wahrlich gefährlicher Stoff. \ac{H2O} verursacht in gasförmigem
+Zustand schwerste Verbrennungen der menschlichen Haut und der Atemorgane.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{TODO Markierungen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Das Paket\todo{Was waren nochmal Pakete?} \texttt{todonotes} stellt das Makro\todo{Was sind \LaTeX\ Macros?}
+\verb+\todo{...text....}+ zur Verfügung.
+
+Das Macro \verb+\missingfigure{Da fehlt noch ein Bild}+ erzeugt
+\missingfigure{Da fehlt noch ein Bild}.
+
+\todo[color=red,inline]{Das Handbuch \texttt{todonotes} lesen!}
+
+Am Ende des Dokuments wird die Liste aller ToDo's mit \verb+\listoftodos+ ausgegeben\\
+(siehe \texttt{bericht.tex}).
+
+\noindent
+Das Paket kennt folgende Optionen:
+\begin{description}
+\item[\texttt{disable}] ToDo's nicht anzeigen
+\end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Indices}
+
+Mit dem Paket \verb+makeinx+ und dem Macro \verb+\index+ können  leicht Indices erstellt werden.
+Das Macro \verb+\Def{..}+ kann für definitinen benutzt werden.
+z.\,B.\, Mit demm optionalen Argument wie in  \verb+\Def[Definition]{Definitionen}+
+(\Def[Definition]{Definitionen}) können verschiedene Schreibweisen im text und Index angegeben
+werden.
+Weitere interessante Möglichkeiten sind:
+\begin{itemize}
+\item \verb+\index{Punkt!Unterpunkt}+ \index{Punkt!Unterpunkt}
+\item \verb+\index{Verweis|see{Punkt}}+ \index{Verweis|see{Punkt}}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Sachen, die mir Anwender geschickt haben}
+
+\subsection{Erstellen eines Formelverzeichnises}
+\textsc{Andy Nöltner} \url{ANoeltner@lstelcom.com}
+
+Gleichung~\ref{eq-hx-angle} ist eine schöne Gleichung, die im \emph{Formelverzeichnis}
+erscheint.
+\begin{equation}
+hx = x \cdot \tan \alpha
+\eqdesc{eq-hx-angle}{Berechnung Höhenunterschied Tx zu Rx}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Installationsanleitung}
+
+  \hrule
+  %% ACHTUNG: Es macht Probleme, wenn die inkludierte Datei UTF8 Kodiert ist
+  %% ggf. hilft: https://www.ctan.org/pkg/listingsutf8
+  \lstinputlisting[
+     basicstyle=\small\rmfamily,
+     fontadjust,
+     firstline=6,
+     captionpos=t,
+     label={fig-readme},
+     caption={Installationsanleitung unter Microsoft Windows und Linux (\texttt{README.txt})}
+  ]{./zfiles/Code/Sonstiges/README.txt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

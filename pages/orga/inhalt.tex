@@ -1,0 +1,40 @@
+\cleardoublepage
+
+\pagenumbering{gobble}
+\pagestyle{plain}
+
+\chapter*{Dokumentenverzeichnis}
+In diesem Umschlag befinden sich folgende Dokumente :
+\begin{itemize}
+	\item \fett{Dokumentenverzeichnis}
+	\begin{itemize}
+		\item \fett{einzelne} Seite(n)
+	\end{itemize}
+	\item \fett{\Was} - \Titel
+	\begin{itemize}
+		\item \fett{\theTotPages} Seite(n)
+	\end{itemize}
+	\item \fett{Bewertung der \Was}
+	\begin{itemize}
+		\item \fett{drei} Seite(n)
+	\end{itemize}
+	\item \fett{Praxisbericht Teil A}
+	\begin{itemize}
+		\item \fett{einzelne} Seite(n)
+	\end{itemize}
+	\item \fett{Praxisbericht Teil B}
+	\begin{itemize}
+		\item \fett{einzelne} Seite(n)
+	\end{itemize}
+	\ifthenelse{\boolean{CDBEILAGE}}{
+		\item \fett{Dateisicherung}
+			\begin{itemize}
+				\item \fett{eine} CD, befestigt im \textbf{hinteren} Teil des Umschlages der \Was
+			\end{itemize}
+	}{}
+\end{itemize}
+
+% https://golatex.de/viewtopic.php?t=15622
+\vspace{5cm}
+\noindent\rule{5cm}{.4pt}\hfill\rule{5cm}{.4pt}\par
+\noindent Datum, Ort \hfill Unterschrift

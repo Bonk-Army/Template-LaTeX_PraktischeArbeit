@@ -1,0 +1,208 @@
+\thispagestyle{plain}
+
+\begin{center}
+
+\newcounter{myWeekNum}
+\stepcounter{myWeekNum}
+%
+\newcommand{\myWeek}{\themyWeekNum
+	\stepcounter{myWeekNum}
+	\ifnum\themyWeekNum=53
+	\setcounter{myWeekNum}{1}
+	\else\fi
+}
+
+\setcounter{myWeekNum}{32}
+\ganttset{%
+	calendar week text={\myWeek{}}%
+}
+%
+
+\newganttlinktype{f-m}{
+	\ganttsetstartanchor{on right=1}
+	\ganttsetendanchor{on left=0}
+	\draw[/pgfgantt/link]
+	([xshift=-.2pt]\xLeft, \yUpper) --       % xshift to fit arrow
+	node[pos=.5, /pgfgantt/link label node] {\ganttlinklabel} 
+	(\xRight, \yLower);
+}
+\setganttlinklabel{f-m}{}
+
+\newganttlinktype{b-t}{
+	\ganttsetstartanchor{south}
+	\ganttsetendanchor{north}
+	\draw[/pgfgantt/link]
+	(\xLeft, \yUpper) --       % xshift to fit arrow
+	node[pos=.5, /pgfgantt/link label node] {\ganttlinklabel} 
+	(\xRight, \yLower);
+}
+
+\newganttlinktype{b-lt}{
+	\ganttsetstartanchor{south}
+	\ganttsetendanchor{north west}
+	\draw[/pgfgantt/link]
+	(\xLeft, \yUpper) --       % xshift to fit arrow
+	node[pos=.5, /pgfgantt/link label node] {\ganttlinklabel} 
+	(\xRight, \yLower);
+}
+
+\begin{figure}[h]
+	\begin{adjustbox}{max height=0.95\textwidth}
+		\begin{ganttchart}[
+			hgrid,
+			vgrid,
+			x unit = \myxunit,
+			y unit title = \myyunittitle,
+			title height = .75,
+			y unit chart = \myyunitchart,
+			group/.append style={draw=black, fill=gray!50},
+			group left shift = .03,
+			group right shift = -.03,
+			%progress=today,
+			today=2020-09-18,
+			bar/.append style={fill=red!50},
+			canvas/.append style={fill opacity=.1},
+			time slot format=isodate]{\mystartdate}{\myenddate}
+			
+			\gantttitlecalendar{year,month=name,week,day} \\
+			\def\numbttitlelines{4} 
+			
+			\ganttset{group/.append style={draw=black, fill=brown},}
+			\ganttgroup[]{Dokumentation}{2020-08-03}{2020-09-04} \\
+			
+			 \ganttset{progress label text={},
+				bar incomplete/.append style={fill=green!40},
+				milestone/.append style={fill=green},
+				group/.append style={draw=black, fill=green}} % this suppresses percentage done labels
+			
+			\ganttgroup{a}{2020-08-03}{2020-08-05} \\
+			\ganttbar[progress=00]{b}{2020-08-03}{2020-08-04} \\
+			\ganttbar[progress=00]{c}{2020-08-05}{2020-08-05} \\
+			\ganttmilestone{d}{2020-08-05} \\
+			
+			
+			\ganttset{group/.append style={draw=black, fill=gray!50},}
+			\ganttgroup{e}{2020-08-06}{2020-08-07} \\
+			
+			
+			\ganttset{bar incomplete/.append style={fill=violet!40},
+				milestone/.append style={fill=violet},
+				group/.append style={draw=black, fill=violet},}
+			\ganttgroup{f}{2020-08-10}{2020-08-14} \\
+			\ganttbar[progress=00]{g}{2020-08-10}{2020-08-10} \\
+			\ganttbar[progress=00]{h}{2020-08-10}{2020-08-10} \\
+			\ganttbar[progress=00]{i}{2020-08-11}{2020-08-13} \\
+			\ganttbar[progress=00]{j}{2020-08-14}{2020-08-14} \\
+			\ganttmilestone{k}{2020-08-14} \\
+			
+			\ganttset{bar incomplete/.append style={fill=blue!40},
+				milestone/.append style={fill=blue},
+				group/.append style={draw=black, fill=blue},}
+			\ganttgroup{l}{2020-08-17}{2020-08-18} \\
+			\ganttbar[progress=00]{m}{2020-08-17}{2020-08-17} \\
+			\ganttbar[progress=00]{n}{2020-08-18}{2020-08-18} \\
+			\ganttmilestone{o}{2020-08-18} \\
+			
+			\ganttset{bar incomplete/.append style={fill=yellow!40},
+				milestone/.append style={fill=yellow},
+				group/.append style={draw=black, fill=yellow},}
+			\ganttgroup{p}{2020-08-19}{2020-08-28} \\
+			\ganttbar[progress=00]{q}{2020-08-19}{2020-08-21} \\
+			\ganttbar[progress=00]{r}{2020-08-24}{2020-08-24} \\
+			\ganttbar[progress=00]{s}{2020-08-25}{2020-08-27} \\
+			\ganttbar[progress=00]{t}{2020-08-28}{2020-08-28} \\
+			\ganttmilestone{u}{2020-08-28} \\
+			
+			\ganttset{bar incomplete/.append style={fill=cyan!40},
+				milestone/.append style={fill=cyan},
+				group/.append style={draw=black, fill=cyan},}
+			\ganttgroup{v}{2020-08-31}{2020-09-02} \\
+			\ganttbar[progress=00]{w}{2020-08-31}{2020-09-01} \\
+			\ganttbar[progress=00]{x}{2020-09-01}{2020-09-02} \\
+			\ganttmilestone{y}{2020-09-02} \\
+			
+			\ganttset{bar incomplete/.append style={fill=magenta!40},
+				milestone/.append style={fill=magenta},
+				group/.append style={draw=black, fill=magenta},}
+			\ganttgroup{z}{2020-09-03}{2020-09-04} \\
+			\ganttbar[progress=00]{a}{2020-09-03}{2020-09-04} \\
+			\ganttmilestone{b}{2020-09-04} \\
+			
+			\ganttset{group/.append style={draw=black, fill=gray!50}}
+			\ganttgroup{c}{2020-09-07}{2020-09-11} \\
+			
+			\ganttset{milestone/.append style={fill=orange!75}}
+			\ganttmilestone{d}{2020-09-11}\\
+			
+			\ganttset{bar incomplete/.append style={fill=red!50},
+				milestone/.append style={fill=red},
+				group/.append style={draw=black, fill=red}}
+			\ganttgroup{Korrektur}{2020-09-14}{2020-09-18} \\
+			\ganttbar[progress=00]{\BetreuerFirma}{2020-09-14}{2020-09-18} \\
+			\ganttbar[progress=00]{\Autor}{2020-09-14}{2020-09-18} \\
+			\ganttmilestone{Finale Version}{2020-09-18}
+			
+			\ganttlink[link type=dr]{elem2}{elem3}
+			\ganttlink[link type=f-m]{elem3}{elem4}
+			\ganttlink[link type=dr]{elem4}{elem7}
+			% Auf zu Punkt 2
+			\ganttlink[link type=b-t]{elem7}{elem8}
+			\ganttlink[link type=dr]{elem8}{elem9}
+			\ganttlink[link type=dr]{elem9}{elem10}
+			\ganttlink[link type=f-m]{elem10}{elem11}
+			% Auf zu Punkt 3
+			\ganttlink[link type=dr]{elem11}{elem13}
+			\ganttlink[link type=dr]{elem13}{elem14}
+			\ganttlink[link type=f-m]{elem14}{elem15}
+			\ganttlink[link type=b-lt]{elem15}{elem17}
+			%Auf zu Punkt 4
+			\ganttlink[link type=dr]{elem17}{elem18}
+			\ganttlink[link type=dr]{elem18}{elem19}
+			\ganttlink[link type=dr]{elem19}{elem20}
+			\ganttlink[link type=f-m]{elem20}{elem21}
+			
+			\ganttlink[link type=dr]{elem21}{elem23}
+			%Auf zu Punkt 5
+			\ganttlink[link type=b-lt]{elem23}{elem24}
+			
+			\ganttlink[link type=f-m]{elem24}{elem25}
+			
+			\ganttlink[link type=b-lt]{elem25}{elem27}
+			
+			\ganttlink[link type=f-m]{elem27}{elem28}
+			
+			\ganttlink[link type=dr]{elem28}{elem30}
+			
+			\ganttlink[link type=dr]{elem30}{elem32}
+			\ganttlink[link type=dr]{elem30}{elem33}
+			\ganttlink[link type=f-m]{elem32}{elem34}
+			\ganttlink[link type=f-m]{elem33}{elem34}
+			
+			\def\numbtchartlines{35}
+			
+			\begin{scope}[on background layer]%display week-ends
+				
+				\ganttvrule[vrule/.append style={black, thick}]{Fertigstellung \Was}{2020-09-11}
+				
+				\ganttvrule[vrule/.append style={red, thick},vrule label node/.append style={anchor=north west}]{Abgabe a}{2020-09-18}
+				
+				\ganttvrule[vrule/.append style={red, thick},vrule offset=0.68]{Abgabe DHBW}{2020-09-28}
+				
+				\foreach \i in {0,...,\the\mynumberofweeks}
+				\fill [red!10]
+				(\myfirstweekendshift*\myxunit+\i*7*\myxunit,-\numbttitlelines*\myyunittitle)% on the x-absis: shift the number of days before the first Saturday + 7days*\i; on the y-absis: shift down the number of title lines * their height
+				rectangle 
+				(\myfirstweekendshift*\myxunit+\i*7*\myxunit+2*\myxunit,-\numbttitlelines*\myyunittitle -\numbtchartlines*\myyunitchart);% on the x-absis: add two days (the week-end); on the y-absis: add the number of chartlines*their height
+				\ifthenelse{\myfirstweekendshift=6}{% if the first day is a sunday, it is not grayed. So draw a rectangle for the first day of the chart.
+					\fill [red!10]
+					(0,-\numbttitlelines*\myyunittitle)
+					rectangle
+					(1*\myxunit,-\numbttitlelines*\myyunittitle -\numbtchartlines*\myyunitchart);
+				}{}
+			\end{scope}
+		\end{ganttchart}
+	\end{adjustbox}
+\caption{Gantt Diagramm des Projektablaufs in der 2. Praxisphase}
+\end{figure}
+\hspace*{\stretch{1}}
+\end{center}

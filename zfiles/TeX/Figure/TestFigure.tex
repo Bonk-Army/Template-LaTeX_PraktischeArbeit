@@ -1,0 +1,67 @@
+\thispagestyle{plain}
+\label{a.2.figure}
+\tikzset{
+	every entity/.style = {top color=white,bottom color=blue!30,draw=blue!50!black!100,drop shadow},
+	every attribute/.style = {top color=white, bottom color=yellow!20,
+		draw=yellow, drop shadow},
+	every relationship/.style ={top color=white, bottom color=red!20,
+		draw=red!50!black!100, drop shadow},
+	every edge/.style = {link},
+	every isa/.style = {top color=white, bottom color=green!20,
+		draw=green!50!black!100, drop shadow},
+}
+	\vspace*{\stretch{1}}
+	\begin{figure}[h]
+		\centering
+		\begin{adjustbox}{max height=0.5\textwidth}
+			\begin{tikzpicture}[node distance=1.5cm, every edge/.style={link}]
+				\node[entity] (attribute) {Hehe};
+				
+				\node[isa] (isa) [below=1cm of attribute] {IS A} edge (attribute);
+				
+				\node[entity] 	(pcav) 		[below left = 4cm of isa] {a} edge (isa);
+				\node[attribute] (pcav1) [above left=of pcav] {b} edge (pcav);
+				\node[attribute] (pcav2) [above=of pcav] {c} edge (pcav);
+				
+				\node[relationship] (pcav-rd) [below = of pcav]{1:n} edge (pcav);
+				\node[relationship] (pcav-rt) [below right = of pcav]{1:n} edge (pcav);
+				\node[relationship] (pcav-rlt) [below left = of pcav]{1:n} edge (pcav);
+				
+				\node[entity] 	(mlav) 		[below right = 4cm of isa] {e} edge (isa);
+				\node[attribute] (mlav1) [above right=of mlav] {f} edge (mlav);
+				\node[attribute] (mlav2) [above=of mlav] {g} edge (mlav);
+				
+				\node[relationship] (mlav-rd) [below = of mlav]{1:n} edge (mlav);
+				\node[relationship] (mlav-rt) [below right = of mlav]{1:n} edge (mlav);
+				\node[relationship] (mlav-rlt) [below left = of mlav]{1:n} edge (mlav);
+				
+				\node[entity] 	(t-double) 	[below  = 8cm of isa] {ms} edge (pcav-rd) edge (mlav-rd);
+				\node[attribute] (d1) [below=of t-double,yshift=-1cm,xshift=1.7cm] {\key{h}} edge (t-double);
+				\node[attribute] (d2) [below left =of t-double] {\key{i}} edge (t-double);
+				\node[attribute] (d3) [below right=of t-double] {\key{j}} edge (t-double);
+				\node[attribute] (d4) [below=of t-double,yshift=-1cm,xshift=-1.7cm] {k} edge (t-double);
+				
+				
+				\node[entity] 	(t-text) 		[right = 8cm of t-double] {l} edge (pcav-rt) edge (mlav-rt);
+				\node[attribute] (l1) [below=of t-text] {\key{n}} edge (t-text);
+				\node[attribute] (l2) [below left =of t-text] {\key{o}} edge (t-text);
+				\node[attribute] (l3) [below right=of t-text] {\key{p}} edge (t-text);
+				\node[attribute] (l4) [right=of t-text] {textvalue} edge (t-text);
+				
+				\node[entity] 	(t-longtext) 	[left = 8cm of t-double] {ts} edge (pcav-rlt) edge (mlav-rlt);
+				\node[attribute] (l1) [below=of t-longtext] {\key{q}} edge (t-longtext);
+				\node[attribute] (l2) [below left =of t-longtext] {\key{r}} edge (t-longtext);
+				\node[attribute] (l3) [below right=of t-longtext] {\key{s}} edge (t-longtext);
+				\node[attribute] (l4) [left=of t-longtext] {z} edge (t-longtext);
+				
+			\end{tikzpicture}	
+		\end{adjustbox}
+	\caption{Entwurf eines ERD für die neue Datenstruktur}
+	\end{figure}
+\vspace{1cm}
+	\begin{itemize}
+		\item 1
+		\item 2
+	\end{itemize}
+	
+	\vspace{\stretch{1}}

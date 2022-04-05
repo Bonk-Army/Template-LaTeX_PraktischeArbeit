@@ -1,0 +1,98 @@
+%————————————————————————————————————————————————————————————————————————————
+%								Textformatierungen
+%————————————————————————————————————————————————————————————————————————————
+%fett schreiben
+\newcommand{\fett}[1]{\textbf {#1}}
+\newcommand{\ital}[1]{\emph{#1}}
+
+\newcommand{\class}[1]{\enquote{#1}}
+\newcommand{\interface}[1]{\enquote{#1}}
+\newcommand{\method}[1]{\enquote{#1}}
+\newcommand{\package}[1]{\enquote{#1} - Package}
+\newcommand{\annotation}[1]{Annotation \enquote{#1}}
+\newcommand{\function}[1]{Funktion \enquote{#1}}
+\newcommand{\attribute}[1]{Attribut \enquote{#1}}
+\newcommand{\commandBefehl}[1]{Befehl \enquote{#1}}
+\newcommand{\klassenpfad}[1]{\begin{centering}
+									\par \fcolorbox{gray}{white}{\textcolor{gray}{#1}} \\ 	\vspace{0.4em}
+							\end{centering}}
+\newcommand\HREF[2]{\hyper@linkurl{#2}{#1}}
+
+%————————————————————————————————————————————————————————————————————————————
+%								Todo NOTES
+%————————————————————————————————————————————————————————————————————————————
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+
+%————————————————————————————————————————————————————————————————————————————
+%							Wiederkehrende Floskeln setzen
+%————————————————————————————————————————————————————————————————————————————
+\newcommand{\hk}[1]{\glqq #1\grqq}
+% https://tex.stackexchange.com/questions/30720/footnote-without-a-marker
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+
+%————————————————————————————————————————————————————————————————————————————
+%							Neue Umgebungen definieren
+%————————————————————————————————————————————————————————————————————————————
+\newenvironment{conditions}
+{\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
+	{\end{tabular}\par\vspace{\belowdisplayskip}}
+\newenvironment{paragraphCustom}[2]{\vspace{0.2cm}\begin{adjustwidth}{#1}{}\textbf{#2} \newline}{\end{adjustwidth} \vspace{0.2cm}}
+
+%———————————————————————————————————————————————————————————————————————————
+%								Spezial Tabelle
+%———————————————————————————————————————————————————————————————————————————
+\newcommand*{\thead}[2]{\multicolumn{1}{#2}{\bfseries #1}}
+\newcommand{\FormeHP}[2]{\hline {#1} & {#2} \\ \hline}
+\newcommand{\FormeUP}{\ \ \ $\bullet$ }
+\newcommand{\FormeUUP}{\ \ \ \ \ \ \ $\circ$ }
+\newcommand{\Abstand}{\\}
+
+%[11:19] JMainka
+%\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+%———————————————————————————————————————————————————————————————————————————
+%								Bildschatten
+%———————————————————————————————————————————————————————————————————————————
+% code adapted from https://tex.stackexchange.com/a/11483/3954
+% https://tex.stackexchange.com/questions/81842/creating-a-drop-shadow-with-guassian-blur
+
+% some parameters for customization
+\def\shadowshift{3pt,-3pt}
+\def\shadowradius{6pt}
+\colorlet{innercolor}{black!60}
+\colorlet{outercolor}{gray!05}
+% this draws a shadow under a rectangle node
+\newcommand\drawshadow[1]{
+	\begin{pgfonlayer}{shadow}
+		\shade[outercolor,inner color=innercolor,outer color=outercolor] ($(#1.south west)+(\shadowshift)+(\shadowradius/2,\shadowradius/2)$) circle (\shadowradius);
+		\shade[outercolor,inner color=innercolor,outer color=outercolor] ($(#1.north west)+(\shadowshift)+(\shadowradius/2,-\shadowradius/2)$) circle (\shadowradius);
+		\shade[outercolor,inner color=innercolor,outer color=outercolor] ($(#1.south east)+(\shadowshift)+(-\shadowradius/2,\shadowradius/2)$) circle (\shadowradius);
+		\shade[outercolor,inner color=innercolor,outer color=outercolor] ($(#1.north east)+(\shadowshift)+(-\shadowradius/2,-\shadowradius/2)$) circle (\shadowradius);
+		\shade[top color=innercolor,bottom color=outercolor] ($(#1.south west)+(\shadowshift)+(\shadowradius/2,-\shadowradius/2)$) rectangle ($(#1.south east)+(\shadowshift)+(-\shadowradius/2,\shadowradius/2)$);
+		\shade[left color=innercolor,right color=outercolor] ($(#1.south east)+(\shadowshift)+(-\shadowradius/2,\shadowradius/2)$) rectangle ($(#1.north east)+(\shadowshift)+(\shadowradius/2,-\shadowradius/2)$);
+		\shade[bottom color=innercolor,top color=outercolor] ($(#1.north west)+(\shadowshift)+(\shadowradius/2,-\shadowradius/2)$) rectangle ($(#1.north east)+(\shadowshift)+(-\shadowradius/2,\shadowradius/2)$);
+		\shade[outercolor,right color=innercolor,left color=outercolor] ($(#1.south west)+(\shadowshift)+(-\shadowradius/2,\shadowradius/2)$) rectangle ($(#1.north west)+(\shadowshift)+(\shadowradius/2,-\shadowradius/2)$);
+		\shade[outercolor,right color=innercolor,left color=innercolor] ($(#1.north west)+(-\shadowradius/12,\shadowradius/12)$) rectangle ($(#1.south east)+(\shadowradius/12,-\shadowradius/12)$);%Frame
+		\filldraw ($(#1.south west)+(\shadowshift)+(\shadowradius/2,\shadowradius/2)$) rectangle ($(#1.north east)+(\shadowshift)-(\shadowradius/2,\shadowradius/2)$);
+	\end{pgfonlayer}
+}
+% create a shadow layer, so that we don't need to worry about overdrawing other things
+\pgfdeclarelayer{shadow} 
+\pgfsetlayers{shadow,background,main}
+% Define image shadow command
+\newcommand\shadowimage[2][]{%
+	\begin{tikzpicture}
+		\node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[#1]{#2}};
+		\drawshadow{image}
+\end{tikzpicture}}

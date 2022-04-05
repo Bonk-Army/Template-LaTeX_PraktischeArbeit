@@ -1,0 +1,16 @@
+% https://tex.stackexchange.com/questions/22412/beamer-transition-effect
+\transblindshorizontal			Show the slide as if horizontal blinds were pulled away.                  
+\transblindsvertical			Show the slide as if vertical blinds were pulled away.                  
+\transboxin						Show the slide by moving to the center from all four sides.
+\transboxout					Show the slide by showing more and more of a rectangular area that is centered on the slide center
+\transdissolve					Slowly dissolve what was shown before
+\transglitter					Glitter sweeps in specified direction
+\transsplitverticalin			Show the slide by sweeping two vertical lines from the sides inward.
+\transsplitverticalout			Show the slide by sweeping two vertical lines from the center outward.
+\transsplithorizontalin			Show the slide by sweeping two horizontal lines from the sides inward.
+\transsplithorizontalout		Show the slide by sweeping two horizontal lines from the center outward.
+\transwipe						Sweeps single line in specified direction
+\transduration{2}				Show slide specified number of seconds
+\transpush						Show the slide by pushing what was shown before off the screen using the new content.
+\transreplace					Replace the previous slide directly (default behaviour).
+\transcover						Show the slide by covering the content that was shown before

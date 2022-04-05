@@ -1,0 +1,34 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Descr:       Vorlage für Berichte der DHBW-Karlsruhe, Erklärung
+%% Author:      Prof. Dr. Jürgen Vollmer, vollmer@dhbw-karlsruhe.de
+%% $Id: erklaerung.tex,v 1.11 2020/03/13 14:24:42 vollmer Exp $
+%% -*- coding: utf-8 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% In Bachelorarbeiten muss eine schriftliche Erklärung abgegeben werden.
+% Hierin bestätigen die Studierenden, dass die Bachelorarbeit, etc.
+% selbständig verfasst und sämtliche Quellen und Hilfsmittel angegeben sind. Diese Erklärung
+% bildet das zweite Blatt der Arbeit. Der Text dieser Erklärung muss auf einer separaten Seite
+% wie unten angegeben lauten.
+
+\newpage
+\thispagestyle{empty}
+\begin{framed}
+\begin{center}
+\Large\bfseries Erklärung
+\end{center}
+\medskip
+\noindent
+% siehe §5(3) der \enquote{Studien- und Prüfungsordnung DHBW Technik} vom 29.\,9.\,2017 und Anhang 1.1.13
+Ich versichere hiermit, dass ich meine \Was \ mit dem Thema:
+\enquote{\Titel}
+selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt habe. Ich versichere zudem, dass die eingereichte elektronische Fassung mit der gedruckten Fassung übereinstimmt. \\
+\vspace{3cm} \\
+\ifthenelse{\boolean{DIGITALE-UNTERSCHRIFT}}{\includegraphics[height=1.5\baselineskip]{./zfiles/Signaturen/Ort_Datum} \hfill \includegraphics[height=2\baselineskip]{./zfiles/Signaturen/Signatur} \hspace{0.1cm} \vspace{-0.5cm} \\}{}
+\ifthenelse{\boolean{DIGITAL-SIGN-AREA}}{\sigField{Digitale Signatur}{14cm}{2cm}}{}
+\ifthenelse{\boolean{DIGITAL-SIGN-AREA}}{\underline{\hspace{14cm}} \\ \hspace{4cm} Digitale Unterschrift}{\underline{\hspace{6cm}}\hfill\underline{\hspace{6cm}} \\ Ort~~~~~~~~~~~~~Datum \hfill Unterschrift\hspace{4cm}}
+\end{framed}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\endinput
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

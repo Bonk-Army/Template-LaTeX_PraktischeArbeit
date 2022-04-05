@@ -1,0 +1,154 @@
+%======================================================================
+%	
+%	 __  __       _         ______ _ _      
+%	|  \/  |     (_)       |  ____(_) |     
+%	| \  / | __ _ _ _ __   | |__   _| | ___ 
+%	| |\/| |/ _` | | '_ \  |  __| | | |/ _ \
+%	| |  | | (_| | | | | | | |    | | |  __/
+%	|_|  |_|\__,_|_|_| |_| |_|    |_|_|\___|
+%
+%----------------------------------------------------------------------
+% Descripton : Main File to compose the resulting PDF
+%======================================================================
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+%————————————————————————————————————————————————————————————————————————————
+%					Screen Ratio
+%————————————————————————————————————————————————————————————————————————————
+% 4:3
+%\documentclass{beamer}
+%16:9 // Other possible values are: 1610, 149, 54, 43 and 32.
+\documentclass[aspectratio=169]{beamer}
+
+%————————————————————————————————————————————————————————————————————————————
+%					Handout
+% If you want to print the Handout change the Documentclass to 
+% \documentclass[handout]{beamer} and uncomment the Handout Section!!!
+%————————————————————————————————————————————————————————————————————————————
+%\documentclass[aspectratio=169,handout]{beamer}
+
+%————————————————————————————————————————————————————————————————————————————
+%					Thema
+%————————————————————————————————————————————————————————————————————————————
+% Credits to : https://github.com/elauksap/focus-beamertheme
+\usetheme{focus}
+\definecolor{main}{RGB}{65, 75, 85}
+\definecolor{background}{RGB}{237, 237, 237}
+\definecolor{orange}{RGB}{255, 155, 0}
+% Footline info is printed only if [numbering=fullbar].
+%\footlineinfo{Custom footline text}
+
+
+%————————————————————————————————————————————————————————————————————————————
+%					Import aller Konfigurationen
+%————————————————————————————————————————————————————————————————————————————
+\usepackage{./config/Pakete}
+\usepackage{./config/PaketePraesentation} % <- Weil manche Paket nicht in die Präsentation dürfen!
+\usepackage{./config/Befehle}
+\usepackage{./config/Styles}
+
+%————————————————————————————————————————————————————————————————————————————
+%								Notes
+%————————————————————————————————————————————————————————————————————————————
+\setbeamercolor{note page}{bg=background, fg=black}
+\setbeamercolor{note title}{bg=main,fg=white}
+
+%————————————————————————————————————————————————————————————————————————————
+%					Modes
+%————————————————————————————————————————————————————————————————————————————
+\mode<beamer>{%
+	%Options only for Beamer
+	%\setbeameroption{show notes on second screen = right}
+}
+\mode<handout>{%
+	%\setbeameroption{show notes on second screen = right}
+	%\pgfpagesuselayout{4 on 1}[a4paper,border shrink=5mm,landscape] 
+}
+
+
+%————————————————————————————————————————————————————————————————————————————
+%					Variablen deklarieren
+%————————————————————————————————————————————————————————————————————————————
+\include{./config/Variables}
+
+%————————————————————————————————————————————————————————————————————————————
+%					Informationen ausfüllen
+%————————————————————————————————————————————————————————————————————————————
+\include{./config/Informationen} % <- Ausfüllen, damit Titlepage gefüllt wird
+\include{./config/HyperrefSetup}
+
+%————————————————————————————————————————————————————————————————————————————
+%					PDF Optionen
+%————————————————————————————————————————————————————————————————————————————
+\setboolean{CHANGELOG}{true}
+\setboolean{SPERRVERMERK}{true}
+
+%————————————————————————————————————————————————————————————————————————————
+%								Notes
+%————————————————————————————————————————————————————————————————————————————
+%\setbeameroption{hide notes} % Only slides
+%\setbeameroption{show only notes} % Only notes
+%\setbeameroption{show notes on second screen = right} % Both
+% Give a slight yellow tint to the notes page
+%\setbeamertemplate{note page}{\pagecolor{yellow!5}\insertnote}\usepackage{palatino}
+
+%————————————————————————————————————————————————————————————————————————————
+%									Anfang Dokument
+%————————————————————————————————————————————————————————————————————————————
+\begin{document}
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%								Deckseite
+	%—————————————————————————————————————————————————————————————————————————
+	\include{./slides/orga/titlePage}
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%								Changelog
+	%—————————————————————————————————————————————————————————————————————————
+	\ifthenelse{\boolean{CHANGELOG}}{\include{./slides/orga/changelog}}{}
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%								Changelog
+	%—————————————————————————————————————————————————————————————————————————
+	\ifthenelse{\boolean{SPERRVERMERK}}{\include{./slides/orga/sperrvermerk}}{}
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%							Inhaltsverzeichnis
+	%—————————————————————————————————————————————————————————————————————————
+	\include{slides/orga/inhaltsverzeichnis}
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%								Inhalt
+	%—————————————————————————————————————————————————————————————————————————
+	% https://www.scribbr.de/abgabe-abschlussarbeit/bachelorarbeit-praesentation/
+	\include{./slides/content/DemoSection}
+	%\include{./slides/content/1_Projektumfeld}
+	%\include{./slides/content/2_Einleitung}
+	%\include{./slides/content/3_Forschungsgegenstand}
+	%\include{./slides/content/4_Methodik}
+	%\include{./slides/content/5_Umsetzung}
+	%\include{./slides/content/6_Ergebniss}
+	%\include{./slides/content/7_Ausblicke}
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%								Endslide
+	%—————————————————————————————————————————————————————————————————————————
+	\include{slides/orga/endSlide}
+	\appendix
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%						Literaturverzeichnis
+	%—————————————————————————————————————————————————————————————————————————
+	% Kläre vorher mit deinem Prüfungskomitee ab, ob in deiner Präsentation Quellenangaben gefordert sind. Wenn du die verwendeten Quellen angibst, solltest du auf der sicheren Seite sein.
+	\begin{frame}{Literaturverzeichnis}
+		\nocite{*} % Display all references regardless of if they were cited
+		\bibliography{./directories/bibliographyPresentation}
+		\bibliographystyle{plain}
+	\end{frame}
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%								Backup Slides
+	%—————————————————————————————————————————————————————————————————————————
+	\include{slides/orga/backupSlide}
+		
+\end{document}

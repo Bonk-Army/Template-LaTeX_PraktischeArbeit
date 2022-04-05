@@ -1,0 +1,9 @@
+1. MiKeTeX installieren
+	=> Am besten für alle Benutzer, aber lokaler Benutzer geht auch
+2. MiKeTeX Console - aufrufen und alle Updates installieren
+3. TeXStudio installieren
+	=> Sollte automatisch MiKeTeX erkennen
+4. Viel Spaß :D
+
+5. Gelegentlich mal mit der MiKeTeX Console die Packages updaten!
+

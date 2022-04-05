@@ -1,0 +1,42 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Descr:       Zusätzliche Befehler für das GANTT Diagramm
+%% Author:      Nico Holzhäuser
+%% -*- coding: utf-8 -*-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%TO BE UPDATED ACCORDING TO YOUR NEEDS
+\def\mystartdate{2020-08-03}%starting date of the calendar
+\def\myenddate{2020-09-28}%ending date of the calendar
+\def\myxunit{.5cm}%width of 1 day
+\def\myyunittitle{.5cm}%height of 1 title line
+\def\myyunitchart{1cm}%height of 1 chart line
+
+\def\pgfcalendarweekdayletter#1{% define the name of weekdays + formatting
+    \ifcase#1M\or T\or W\or T\or F\or \textcolor{red!50!white}{S}\or \textcolor{red}{\textbf{S}}\fi
+}   
+
+%Some calculation for plotting week-ends area
+    \newcount\myenddatecount
+        \pgfcalendardatetojulian{\myenddate}{\myenddatecount}
+
+    \newcount\mystartdatecount
+        \pgfcalendardatetojulian{\mystartdate}{\mystartdatecount}
+
+    \newcount\mynumberofdays
+        \mynumberofdays \myenddatecount\relax
+        \advance \mynumberofdays by -\mystartdatecount\relax% so \mynumberofdays is now the number of days in the calendar
+
+    \newcount\mynumberofweeks
+        \mynumberofweeks\mynumberofdays\relax
+        \advance \mynumberofweeks by -1\relax
+        \divide \mynumberofweeks by 7\relax% so we have the number of full weeks
+
+    \newcount\myfirstweekday
+        \pgfcalendarjuliantoweekday{\mystartdatecount}{\myfirstweekday}
+
+    \newcount\myfirstweekendshift
+        \myfirstweekendshift 5\relax
+        \advance\myfirstweekendshift by -\myfirstweekday\relax
+        \ifnum \myfirstweekendshift=-1%if first day = sunday
+            \advance \myfirstweekendshift by 7\relax% the first full weekend will thus begin one week after
+        \fi
