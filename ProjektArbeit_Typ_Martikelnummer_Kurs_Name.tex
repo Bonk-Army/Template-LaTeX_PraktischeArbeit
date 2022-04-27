@@ -253,7 +253,7 @@
 	\phantomsection
 	%\addcontentsline{toc}{chapter}{Glossar} %Glossar
 	% Wenn Glossar nicht erstellt wird -> In den Projektarbeitspaketen automake=true setzen ....
-	\printglossaries
+	\printglossary[title=Glossar, toctitle=Glossar]
 	
 	\ifthenelse{\boolean{TRENNSTRICHE}}{\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}}{}
 	
