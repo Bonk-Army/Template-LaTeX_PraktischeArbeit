@@ -292,6 +292,8 @@ TSWLatexianTemp*
 # /!/!!_Abgabe_!!/Quellcode/**/
 # /!!_Abgabe_!!/**
 
+4_Studienarbeit*.pdf
 Presentation_*.pdf
 ProjektArbeit_*.pdf
 /*.equ
+!/config/DHBW/bericht.ist
