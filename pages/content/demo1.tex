@@ -170,46 +170,6 @@ Listing~\ref{algo-quicksort}).
                  basicstyle=\tiny\sffamily,
                  captionpos=b,
 		 caption={Das Makefile}]{./zfiles/Code/Sonstiges/Makefile} % Überschrift, Dateiname der zu inkludieren Datei
-% ACHTUNG: ProTeXT / Windows hat hier ein Bug: "Makefile" ohne Punkt am Ende wird nicht gefunden.
-%          ($%&/ DOS-Legacy :-(
-%          Daher muss für Linux eine Datei "Makefile." (mit Punkt am Ende) als Symlink auf "Makefile"
-%          angelegt werden und hier "Makefile." angegeben werden. Das ist nur notwendig,
-%          wenn der Dateiname keinen Suffix hat....
-
-% Setze Programm direkt
-\begin{lstlisting}[language=c,
-                   frame=single,           % Ein Rahmen um den Code
-                   framexleftmargin=15pt,  % Rahmen link von den Zahlen
-                   style=algoBericht,
-                   label={algo-quicksort},
-                   captionpos=b,           % Caption unter den Code setzen
-		   caption={quicksort in C}]
-void quicksort (int *a, int links, int rechts)
-/* sortiert die Elemente a[links] .. a[rechts] */
-{
-  /* partitioniere a[links] .. a[rechts] */
-  int m = (links + rechts) / 2 ;
-  int x = a[m];
-  int l = links, r = rechts;
-
-  while (l <= r) {
-    while (a[l] < x) l++;
-    printf ("von links: l=%d\n", l);
-    while (a[r] > x) r--;
-    printf ("von rechts: r=%d\n", r);
-
-    if (l <= r) {
-      int t = a[l]; a[l] = a[r]; a[r] = t;
-                                    /* a[l] <-> a[r] */
-      l++; r--;   /* "verschiebe Pfeile" */
-    }
-  }
-
-  /* Sortiere linken und rechten Teilarray */
-  if (links < r)      quicksort (a, links, r);
-  if (l     < rechts) quicksort (a, l,     rechts);
-}
-\end{lstlisting}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
