@@ -28,7 +28,7 @@ Diese Vorlage umfasst folgende Dateien:
      Wenn Sie unter \emph{Microsoft Windows} bei der Installation
      \enquote{Install missing packages on the fly $\longrightarrow$ YES} ausgewählt haben,
      werden fehlende Pakete automatisch installiert.
-\item[README.txt] Siehe Listing~\ref{fig-readme}.
+\item[README.txt] Siehe \cref{fig-readme}.
 \end{description}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -159,58 +159,27 @@ Tabelle~\ref{bibtex-macros} zeigt die wichtigsten Macros.
 
 \Def[Quellcodelisting]{Quellcodelistings} können mit dem \texttt{listings}-Paket gesetzt werden.
 Es können Dateien direkt inkludiert werden, wie das \texttt{Makefile} aus
-Listing~\ref{algo-makefile}, oder in der \LaTeX-Datei angegeben werden (siehe
-Listing~\ref{algo-quicksort}).
+\cref{algo-makefile}, oder in der \LaTeX-Datei angegeben werden (siehe
+\cref{algo-quicksort}).
 \newpage
 
 % Inkludiere eine Programmdatei
-\lstinputlisting[language=make,         % Welche Sprache, see listings-Dokumentation
+\lstinputlisting[language=java,         % Welche Sprache, see listings-Dokumentation
                  style=algoBericht,     % Benutze oben definierten Stil
                  label={algo-makefile}, % Label für \ref{..}
                  basicstyle=\tiny\sffamily,
                  captionpos=b,
-		 caption={Das Makefile}]{./zfiles/Code/Sonstiges/Makefile} % Überschrift, Dateiname der zu inkludieren Datei
-% ACHTUNG: ProTeXT / Windows hat hier ein Bug: "Makefile" ohne Punkt am Ende wird nicht gefunden.
-%          ($%&/ DOS-Legacy :-(
-%          Daher muss für Linux eine Datei "Makefile." (mit Punkt am Ende) als Symlink auf "Makefile"
-%          angelegt werden und hier "Makefile." angegeben werden. Das ist nur notwendig,
-%          wenn der Dateiname keinen Suffix hat....
-
-% Setze Programm direkt
-\begin{lstlisting}[language=c,
-                   frame=single,           % Ein Rahmen um den Code
-                   framexleftmargin=15pt,  % Rahmen link von den Zahlen
-                   style=algoBericht,
-                   label={algo-quicksort},
-                   captionpos=b,           % Caption unter den Code setzen
-		   caption={quicksort in C}]
-void quicksort (int *a, int links, int rechts)
-/* sortiert die Elemente a[links] .. a[rechts] */
-{
-  /* partitioniere a[links] .. a[rechts] */
-  int m = (links + rechts) / 2 ;
-  int x = a[m];
-  int l = links, r = rechts;
-
-  while (l <= r) {
-    while (a[l] < x) l++;
-    printf ("von links: l=%d\n", l);
-    while (a[r] > x) r--;
-    printf ("von rechts: r=%d\n", r);
-
-    if (l <= r) {
-      int t = a[l]; a[l] = a[r]; a[r] = t;
-                                    /* a[l] <-> a[r] */
-      l++; r--;   /* "verschiebe Pfeile" */
-    }
-  }
-
-  /* Sortiere linken und rechten Teilarray */
-  if (links < r)      quicksort (a, links, r);
-  if (l     < rechts) quicksort (a, l,     rechts);
-}
-\end{lstlisting}
-
+		 caption={Das Makefile}]{./zfiles/Code/Java/javaSnippet.java} % Überschrift, Dateiname der zu inkludieren Datei
+		 
+% Inkludiere eine Programmdatei
+\begin{lstlisting}[language=java,         % Welche Sprache, see listings-Dokumentation
+				style=algoBericht,     % Benutze oben definierten Stil
+				label={algo-quicksort}, % Label für \ref{..}
+				basicstyle=\tiny\sffamily,
+				captionpos=b,
+				caption={Der Algo hehehhe}]
+					hehehehe
+\end{lstlisting}	% Überschrift, Dateiname der zu inkludieren Datei
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Benutzen von Abkürzungen}
@@ -246,7 +215,7 @@ Zustand schwerste Verbrennungen der menschlichen Haut und der Atemorgane.
 \section{TODO Markierungen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Das Paket\todo{Was waren nochmal Pakete?} \texttt{todonotes} stellt das Makro\todo{Was sind \LaTeX\ Macros?}
+Das Paket\todo{Was waren nochmal Pakete?} \texttt{todonotes} stellt das Makro
 \verb+\todo{...text....}+ zur Verfügung.
 
 Das Macro \verb+\missingfigure{Da fehlt noch ein Bild}+ erzeugt
@@ -285,28 +254,29 @@ Weitere interessante Möglichkeiten sind:
 \subsection{Erstellen eines Formelverzeichnises}
 \textsc{Andy Nöltner} \url{ANoeltner@lstelcom.com}
 
-Gleichung~\ref{eq-hx-angle} ist eine schöne Gleichung, die im \emph{Formelverzeichnis}
+\cref{eq-hx-angle} ist eine schöne Gleichung, die im \emph{Formelverzeichnis}
 erscheint.
-\begin{equation}
+\label{eq-hx-angle}\begin{equation}
 hx = x \cdot \tan \alpha
-\eqdesc{eq-hx-angle}{Berechnung Höhenunterschied Tx zu Rx}
-\end{equation}
+\end{equation}\eqdesc{eq-hx-angle}{Berechnung Höhenunterschied Tx zu Rx}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Installationsanleitung}
-
-  \hrule
-  %% ACHTUNG: Es macht Probleme, wenn die inkludierte Datei UTF8 Kodiert ist
-  %% ggf. hilft: https://www.ctan.org/pkg/listingsutf8
-  \lstinputlisting[
-     basicstyle=\small\rmfamily,
-     fontadjust,
-     firstline=6,
-     captionpos=t,
-     label={fig-readme},
-     caption={Installationsanleitung unter Microsoft Windows und Linux (\texttt{README.txt})}
-  ]{./zfiles/Code/Sonstiges/README.txt}
+\section{Installationsanleitung} \label{fig-readme}
+Lies die Datei in \href{./zfiles/Code/Sonstiges/README.txt}{./zfiles/Code/Sonstiges/README.txt}
+%  \hrule
+%  %% ACHTUNG: Es macht Probleme, wenn die inkludierte Datei UTF8 Kodiert ist
+%  %% ggf. hilft: https://www.ctan.org/pkg/listingsutf8
+%  \lstinputlisting[
+%     basicstyle=\small\rmfamily,
+%     fontadjust,
+%     firstline=6,
+%     linewidth=16cm,
+%     captionpos=t,
+%     label={fig-readme},
+%     caption={Installationsanleitung unter Microsoft Windows und Linux (\texttt{README.txt})}
+%  ]{./zfiles/Code/Sonstiges/README.txt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \endinput
