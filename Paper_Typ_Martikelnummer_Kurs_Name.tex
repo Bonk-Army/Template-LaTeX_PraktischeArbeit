@@ -17,6 +17,7 @@
 %======================================================================
 % Wichtig um die Bibliography zu compilen bitte einfach einmal F8 und danach nochmal normal Compilen!!!
 % oder in TeXStudio unter Optionen -> Erzeugen -> und Dann die Sequenz pdfLatex -> Biber -> pdfLatex
+% oder einfach F5 -> F8 -> F5
 %======================================================================
 % Beim Fehler 
 % 	TeX capacity exceeded, sorry [main memory size=3000000].....
@@ -310,7 +311,7 @@
 	%					         Demofiles -- REMOVE
 	\include{pages/content/readme}
 	\ifthenelse{\boolean{DEBUG}}{}{\cleardoublepage}
-	%\include{pages/content/demo1}
+	\include{pages/content/demo1}
 	\ifthenelse{\boolean{DEBUG}}{}{\cleardoublepage}
 	%Trennlinie fürs ToC beim letzten Kapitel!
 	\ifthenelse{\boolean{TRENNSTRICHE}}{\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}}{}
