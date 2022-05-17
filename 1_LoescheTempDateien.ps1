@@ -9,6 +9,7 @@ cd $path
 
 Get-ChildItem * -Include *.aux -Recurse | Remove-Item -Exclude *.tex*
 Get-ChildItem * -Include *.bbl -Recurse |Remove-Item -Exclude *.tex*
+Get-ChildItem * -Include *.bcf -Recurse |Remove-Item -Exclude *.tex*
 Get-ChildItem * -Include *.blg -Recurse |Remove-Item -Exclude *.tex*
 Get-ChildItem * -Include *.for -Recurse |Remove-Item -Exclude *.tex*
 Get-ChildItem * -Include *.glg -Recurse |Remove-Item -Exclude *.tex*

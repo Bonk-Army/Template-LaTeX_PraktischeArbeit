@@ -1,3 +1,8 @@
+%!TeX document-id = {bff9011c-8ff8-4be2-916a-5647c89bca22}
+%!TeX program = pdflatex
+%!TeX TXS-program:compile = txs:///pdflatex | txs:///biber | txs:///pdflatex
+%!TeX TXS-program:bibliography = txs:///biber
+%!BIB TS-program = biber
 %======================================================================
 %	
 %	 __  __       _         ______ _ _      
@@ -10,6 +15,10 @@
 %----------------------------------------------------------------------
 % Descripton : Main File to compose the resulting PDF
 %======================================================================
+% Wichtig um die Bibliography zu compilen bitte einfach einmal F8 und danach nochmal normal Compilen!!!
+% oder in TeXStudio unter Optionen -> Erzeugen -> und Dann die Sequenz pdfLatex -> Biber -> pdfLatex
+% oder einfach F5 -> F8 -> F5
+%======================================================================
 % Beim Fehler 
 % 	TeX capacity exceeded, sorry [main memory size=3000000].....
 % Folgendes verwenden 
@@ -20,14 +29,14 @@
 \pdfminorversion=7
 \pdfinclusioncopyfonts=1
 \documentclass[
-				%ngerman             % neue deutsche Rechtschreibung
+				%ngerman            % neue deutsche Rechtschreibung
 				,a4paper            % Papiergrösse
 				,twoside            % Zweiseitiger Druck (rechts/links)
 				% ,10pt             % Schriftgrösse
 				,11pt
 				% ,12pt
 				,pdftex
-				%  ,disable         % Todo-Markierungen auschalten
+				% ,disable         % Todo-Markierungen auschalten
 				,notitlepage		% Thanks abstract... preventing it from removing pageNumber
 				]{report}
 
@@ -54,19 +63,19 @@
 %————————————————————————————————————————————————————————————————————————————
 %					Variablen deklarieren
 %————————————————————————————————————————————————————————————————————————————
-\include{./config/Variables}
+\input{./config/Variables}
 
 %————————————————————————————————————————————————————————————————————————————
 %					Informationen ausfüllen
 %————————————————————————————————————————————————————————————————————————————
-\include{./config/Informationen}
-\include{./config/HyperrefSetup}
+\input{./config/Informationen}
+\input{./config/HyperrefSetup}
 
 
 %————————————————————————————————————————————————————————————————————————————
 %					Sonstige Einstellungen
 %————————————————————————————————————————————————————————————————————————————
-\bibliography{./directories/bibliography}
+\addbibresource{directories/bibliography.bib}
 \loadglsentries{./directories/glossary}
 \makeglossaries
 \makeindex[columns=1,options={-s ./config/DHBW/bericht.ist}]
@@ -135,9 +144,17 @@
 %									Anfang Dokument
 %————————————————————————————————————————————————————————————————————————————
 \begin{document}
-	% Wer keine Seitenzahlen braucht bis zum TOC einfach das Pagenumbering auf gobble und an der Stelle an der die Seitenzählung beginnen soll roman einfügen
-	\pagenumbering{gobble}
-	\pagestyle{plain}
+	
+	% Ab hier beginnt die Seitenzählung für den Prefix in kleinen römischen Zahlen
+	% Erste Seite nach der Titelseite
+	\pagenumbering{roman}
+	
+	%—————————————————————————————————————————————————————————————————————————
+	%								Deckseite
+	%—————————————————————————————————————————————————————————————————————————
+	\begin{titlepage}
+		\include{./pages/orga/titlepage}
+	\end{titlepage}
 	
 	%—————————————————————————————————————————————————————————————————————————
 	%								Changelog
@@ -157,21 +174,6 @@
 		\clearpage
 		\ifthenelse{\boolean{TRENNSTRICHE}}{\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}}{}
 	}{}
-	
-	%—————————————————————————————————————————————————————————————————————————
-	%								Deckseite
-	%—————————————————————————————————————————————————————————————————————————
-	\begin{titlepage}
-		\include{./pages/orga/titlepage}
-	\end{titlepage}
-	
-	% Ab hier beginnt die Seitenzählung für den Prefix in kleinen römischen Zahlen
-	% Erste Seite nach der Titelseite
-	\pagenumbering{roman}
-	\setcounter{page}{2}
-	\ifthenelse{\boolean{DEBUG}}{}{\cleardoublepage}
-	
-	
 	
 	%—————————————————————————————————————————————————————————————————————————
 	%								Erklärung
@@ -309,7 +311,7 @@
 	%					         Demofiles -- REMOVE
 	\include{pages/content/readme}
 	\ifthenelse{\boolean{DEBUG}}{}{\cleardoublepage}
-	%\include{pages/content/demo1}
+	\include{pages/content/demo1}
 	\ifthenelse{\boolean{DEBUG}}{}{\cleardoublepage}
 	%Trennlinie fürs ToC beim letzten Kapitel!
 	\ifthenelse{\boolean{TRENNSTRICHE}}{\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}}{}

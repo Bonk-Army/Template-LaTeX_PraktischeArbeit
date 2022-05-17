@@ -9,7 +9,7 @@
 %% erst wirksam, wenn die Format-Datei neu erzeugt wurde!!!
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bericht}[2017/10/06 v1.2]
+\ProvidesPackage{./config/DHBW/bericht}[2017/10/06 v1.2]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% needed packages
@@ -68,9 +68,8 @@
         backref=true,           % In der Literaturref. die Seiten angeben, wo ein \cite dazu steht
         bibencoding=inputenc,   % s. inputenc-Paket
 	style=authoryear-comp,
-        backend=bibtex,
+        backend=biber,
 	sorting=nty]{biblatex}  % http://dante.ctan.org/tex-archive/help/Catalogue/entries/biblatex.html
-\renewcommand{\mkbibnamelast}[1]{\textsc{#1}}
 
 % Abstand der einzelnen Einträge in der Literaturangaben
 \renewcommand{\bibitemsep}{1ex}

@@ -292,7 +292,7 @@ TSWLatexianTemp*
 # /!/!!_Abgabe_!!/Quellcode/**/
 # /!!_Abgabe_!!/**
 
-Paper*.pdf
+Wiss*.pdf
 Presentation_*.pdf
 /*.equ
 !/config/DHBW/bericht.ist

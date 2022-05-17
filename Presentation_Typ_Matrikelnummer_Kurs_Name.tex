@@ -1,3 +1,8 @@
+%!TeX document-id = {bff9011c-8ff8-4be2-916a-5647c89bca22}
+%!TeX program = pdflatex
+%!TeX TXS-program:compile = txs:///pdflatex | txs:///biber | txs:///pdflatex
+%!TeX TXS-program:bibliography = txs:///biber
+%!BIB TS-program = biber
 %======================================================================
 %	
 %	 __  __       _         ______ _ _      
@@ -48,6 +53,11 @@
 \usepackage{./config/Styles}
 
 %————————————————————————————————————————————————————————————————————————————
+%					Sonstige Einstellungen
+%————————————————————————————————————————————————————————————————————————————
+\addbibresource{directories/bibliographyPresentation.bib}
+
+%————————————————————————————————————————————————————————————————————————————
 %								Notes
 %————————————————————————————————————————————————————————————————————————————
 \setbeamercolor{note page}{bg=background, fg=black}
@@ -66,16 +76,17 @@
 }
 
 
+
 %————————————————————————————————————————————————————————————————————————————
 %					Variablen deklarieren
 %————————————————————————————————————————————————————————————————————————————
-\include{./config/Variables}
+\input{./config/Variables}
 
 %————————————————————————————————————————————————————————————————————————————
 %					Informationen ausfüllen
 %————————————————————————————————————————————————————————————————————————————
-\include{./config/Informationen} % <- Ausfüllen, damit Titlepage gefüllt wird
-\include{./config/HyperrefSetup}
+\input{./config/Informationen} % <- Ausfüllen, damit Titlepage gefüllt wird
+\input{./config/HyperrefSetup}
 
 %————————————————————————————————————————————————————————————————————————————
 %					PDF Optionen
@@ -142,8 +153,7 @@
 	% Kläre vorher mit deinem Prüfungskomitee ab, ob in deiner Präsentation Quellenangaben gefordert sind. Wenn du die verwendeten Quellen angibst, solltest du auf der sicheren Seite sein.
 	\begin{frame}{Literaturverzeichnis}
 		\nocite{*} % Display all references regardless of if they were cited
-		\bibliography{./directories/bibliographyPresentation}
-		\bibliographystyle{plain}
+		\printbibliography
 	\end{frame}
 	
 	%—————————————————————————————————————————————————————————————————————————

@@ -10,3 +10,15 @@
 %————————————————————————————————————————————————————————————————————————————
 %Für die Schriftart
 \usepackage{FiraSans}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% citation, bibliography, BIBLATEX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Wer etwas mehr "Kontrolle" über das Aussehen der Referenzen haben möchte, kann
+% auch das "biblatex"-Paket benutzen.
+\usepackage[
+hyperref=true,          % Klickbare Referenzen in der PDF-Datei
+backref=true,           % In der Literaturref. die Seiten angeben, wo ein \cite dazu steht
+bibencoding=inputenc,   % s. inputenc-Paket
+style=authoryear-comp,
+backend=biber,
+sorting=nty]{biblatex}
