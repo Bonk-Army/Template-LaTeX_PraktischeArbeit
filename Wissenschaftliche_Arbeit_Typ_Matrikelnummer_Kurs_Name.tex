@@ -168,9 +168,8 @@
 	%								TODOS
 	%—————————————————————————————————————————————————————————————————————————
 	\ifthenelse{\boolean{TODO}}{
-		\phantomsection
-		\addcontentsline{toc}{chapter}{Liste der ToDo's}
-		\listoftodos[Liste der ToDo's]
+		\todototoc
+		\listoftodos[Liste der ToDos]
 		\clearpage
 		\ifthenelse{\boolean{TRENNSTRICHE}}{\addtocontents{toc}{\protect\mbox{}\protect\hrulefill\par}}{}
 	}{}
