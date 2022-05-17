@@ -22,7 +22,7 @@ Es bietet sich außerdem an benutzte Quellen **IMMER** in einem Ordner zu speich
 1. Compilen des Projektes mit pdfLaTeX
 2. Erstellen der Bibliography (Bitte ab der neusten Version das Backend 'Biber' verwenden)
 3. Nochmal normal compilen
-4. vóila Dokument erstellt 👍
+4. Voilà Dokument erstellt 👍
 
   
 ## Neue Features  
