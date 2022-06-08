@@ -40,6 +40,29 @@
 }
 
 %————————————————————————————————————————————————————————————————————————————
+%                               Big Quotes
+% https://tex.stackexchange.com/questions/277777/block-quote-with-big-quotation-marks-in-margin
+%————————————————————————————————————————————————————————————————————————————
+\newtcolorbox{fancyquotes}{%
+    enhanced jigsaw, 
+    breakable,      % allow page breaks
+    frame hidden,   % hide the default frame
+    left=0cm,       % left margin
+    right=0cm,      % right margin
+    opacityback=0,
+    overlay={%
+        \node [scale=8,
+        text=black,
+        inner sep=0pt,] at ([xshift=-1cm,yshift=-1cm]frame.north west){``}; 
+        \node [scale=8,
+        text=black,
+        inner sep=0pt,] at ([xshift=1cm]frame.south east){''};  
+    },
+    % paragraph skips obeyed within tcolorbox
+    parbox=false,
+}
+
+%————————————————————————————————————————————————————————————————————————————
 %							Neue Umgebungen definieren
 %————————————————————————————————————————————————————————————————————————————
 \newenvironment{conditions}
