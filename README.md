@@ -50,6 +50,11 @@ Vielen Dank an alle die geholfen haben diese Vorlage besser zu machen ([emoji ke
       <sub><b>David Huh</b></sub><br/>
       📖🤔
     </td>
+    <td align="center">
+      <img src="https://avatars.githubusercontent.com/u/58568446?v=4?s=100" width="100px;" alt=""/><br/>
+      <sub><b>Elisabeth Kletsko</b></sub><br/>
+      📖🔍🤔⚠️✅
+    </td>
   </tr>
   <tr>
 </table>
