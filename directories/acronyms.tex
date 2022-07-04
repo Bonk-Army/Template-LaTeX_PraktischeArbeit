@@ -13,25 +13,54 @@
 % Descripton : Acronyms
 %======================================================================
 
-\chapter*{Abkürzungsverzeichnis} % chapter*{..} --> keine Nummer, kein "Kapitel"
+%\chapter*{Abkürzungsverzeichnis} % chapter*{..} --> keine Nummer, kein "Kapitel"
 						         % Nicht ins Inhaltsverzeichnis
-\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}   % Damit das doch ins Inhaltsverzeichnis kommt
+%\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}   % Damit das doch ins Inhaltsverzeichnis kommt
 
-% Hier werden die Abkürzungen definiert
-% 1-10 nur damit der Abstand default auf diese Länge gesetzt wird
-\begin{acronym}[12345678910]
-  	%\acro{Name}[Darstellung der Abkürzung]{Langform der Abkürzung}
-	\acro{WWW}[WWW]{World Wide Web}
-	\acro{Abk}[Abk.]{Abkürzung}
-	\acro{H2O}[\ensuremath{H_2O}]{Di-Hydrogen-Monoxid}
-	\acro{DHBW}[DHBW]{Duale Hochschule Baden-Württemberg}
+\acsetup{
+	first-style = long,
+	list/display = used,
+	pages/display = first
+}
+
+% Alle Bestandteile auf https://packages.oth-regensburg.de/ctan/macros/latex/contrib/acro/acro-manual.pdf -> Seite 7
+
+%\DeclareAcronym{}{
+%	short = SHORTFORM,			% <- required Shortform
+%	long = LONGFORM,			% <- Long Form of the Acronym
+%	foreign = FOREIGN			% <- Foreign Form
+%	tag = acronym,				% <- Tag for printing
+%	sort = SORTKEY				% <- Sort Key, if you use Math Symbols
+%}
 
 
-	% Folgendes benutzen, wenn der Plural einer Abk. benötigt wird
-	% \newacroplural{Name}[Darstellung der Abkürzung]{Langform der Abkürzung}
-	\newacroplural{Abk}[Abk-en]{Abkürzungen}
+\DeclareAcronym{WWW}{
+	short = WWW,
+	long = World Wide Web,
+	tag = acronym
+}
 
-	% Wenn nicht benutzt, erscheint diese Abk. nicht in der Liste
-	\acro{NUA}[]{Not Used Acronym}
-	
-\end{acronym}
+\DeclareAcronym{Abk}{
+	short = Abk.,
+	long =Abkürzung,
+	tag = acronym
+}
+
+\DeclareAcronym{DHBW}{
+	short = DHBW,
+	long = Duale Hochschule Baden-Württemberg,
+	tag = acronym
+}
+
+\DeclareAcronym{H2O}{
+	short = \ensuremath{H_2O},
+	long = Di-Hydrogen-Monoxid,
+	tag = acronym,
+	sort = H20
+}
+
+\DeclareAcronym{NUA}{
+	short = NUA,
+	long = Not used Acronym,
+	tag = acronym
+}

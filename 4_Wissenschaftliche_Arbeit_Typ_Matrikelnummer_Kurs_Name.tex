@@ -79,6 +79,7 @@
 \loadglsentries{./directories/glossary}
 \makeglossaries
 \makeindex[columns=1,options={-s ./config/DHBW/bericht.ist}]
+\include{directories/acronyms}
 
 %————————————————————————————————————————————————————————————————————————————
 %					Einstellungen
@@ -248,7 +249,7 @@
 	\ifthenelse{\boolean{DEBUG}}{\newpage}{\cleardoublepage}
 	
 	\phantomsection
-	\include{directories/acronyms} %Acronyms
+	\printacronyms[name=Acronyms, include=acronym, heading=chapter*] %Acronyms
 	\ifthenelse{\boolean{DEBUG}}{\newpage}{\cleardoublepage}
 	
 	\phantomsection
