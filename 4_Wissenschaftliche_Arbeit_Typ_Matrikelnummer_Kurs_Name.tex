@@ -249,7 +249,8 @@
 	\ifthenelse{\boolean{DEBUG}}{\newpage}{\cleardoublepage}
 	
 	\phantomsection
-	\printacronyms[name=Acronyms, include=acronym, heading=chapter*] %Acronyms
+	\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}   % Damit das doch ins Inhaltsverzeichnis kommt
+	\printacronyms[name=Abkürzungsverzeichnis, include=acronym, heading=chapter*] %Acronyms
 	\ifthenelse{\boolean{DEBUG}}{\newpage}{\cleardoublepage}
 	
 	\phantomsection
