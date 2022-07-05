@@ -250,6 +250,7 @@
 	
 	\phantomsection
 	\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}   % Damit das doch ins Inhaltsverzeichnis kommt
+	\markboth{Abkürzungsverzeichnis}{Abkürzungsverzeichnis} % Damit bei mehreren Seiten oben auch "Abkürzungsverzeichnis" steht
 	\printacronyms[name=Abkürzungsverzeichnis, include=acronym, heading=chapter*] %Acronyms
 	\ifthenelse{\boolean{DEBUG}}{\newpage}{\cleardoublepage}
 	
