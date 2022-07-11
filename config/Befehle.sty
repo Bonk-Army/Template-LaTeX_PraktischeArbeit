@@ -69,7 +69,10 @@
 {\par\vspace{\abovedisplayskip}\noindent\begin{tabular}{>{$}l<{$} @{${}={}$} l}}
 	{\end{tabular}\par\vspace{\belowdisplayskip}}
 \newenvironment{paragraphCustom}[2]{\vspace{0.2cm}\begin{adjustwidth}{#1}{}\textbf{#2} \newline}{\end{adjustwidth} \vspace{0.2cm}}
-
+% https://tex.stackexchange.com/questions/301746/censor-minted-source-code-in-pdf Censor a Box full with Macros etc
+\newenvironment{censorenv}%
+{\setbox0=\vbox\bgroup}%
+{\egroup\censorbox{\box0}}
 %———————————————————————————————————————————————————————————————————————————
 %								Spezial Tabelle
 %———————————————————————————————————————————————————————————————————————————
