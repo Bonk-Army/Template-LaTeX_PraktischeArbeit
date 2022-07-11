@@ -91,6 +91,8 @@
 \setboolean{CHANGELOG}{true}
 % Sollen die TODO's angezeigt werden ?
 \setboolean{TODO}{true}
+% Sollen die Arbeit geschwärzt werden ?
+\setboolean{BLACKOUT}{true}
 % =================================================================================================
 %Digitale Unterschrift auf die Erklärung -> PDF in zfiles/Signaturen/ und dann Signatur.pdf und Ort_Datum.pdf ??
 \setboolean{DIGITALE-UNTERSCHRIFT}{true}
@@ -140,7 +142,8 @@
 \ifthenelse{\boolean{DEBUG}}{}{\setboolean{CHANGELOG}{false}}
 %Package um die Referenzen zu checken, einfach im Log nach "refcheck suchen!"
 %\usepackage{refcheck}
-
+% Schwärzen
+\ifthenelse{\boolean{BLACKOUT}}{}{\StopCensoring}
 %————————————————————————————————————————————————————————————————————————————
 %									Anfang Dokument
 %————————————————————————————————————————————————————————————————————————————
