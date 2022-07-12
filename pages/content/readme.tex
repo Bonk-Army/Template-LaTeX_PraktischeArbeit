@@ -31,6 +31,26 @@
 	\lipsum[11]\thiswillnotshow{This is hidden since option `disable' is chosen!}
 	\lipsum[11]\improvement[inline]{The following section needs to be rewritten!}
 	
+	\section{Test der Theorem Umgebungen}
+	Alle Umgebungen sind in der Datei \enquote{config/Style.sty} definiert. Und die Formatierung kann mit Hilfe des \href{Dokumentes}{https://www.math.uni-bielefeld.de/~rost/amslatex/doc/amsthdoc.pdf} angepasst werden.
+	\begin{definition}
+		\begin{equation}\label{equation}
+			1 + 1 = 2,
+		\end{equation}\eqdesc{Im Formelverzeichnis}
+		and
+		\begin{equation*}
+			2 + 2 = 4.
+		\end{equation*}
+	\end{definition}
+	
+	\begin{beispiel}
+		Das ist ein Beispiel mit dem Beweis in \cite{dante.2010a}
+	\end{beispiel}
+	
+	\begin{bemerkung}
+		Das ist eine Bemerkung
+	\end{bemerkung}
+	
 	\section{Black out Test}
 	Blackout eines kompletten Absatzes mit allen Makros etc. \\
 	\begin{censorenv}
