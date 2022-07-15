@@ -144,6 +144,9 @@
 %\usepackage{refcheck}
 % Schwärzen
 \ifthenelse{\boolean{BLACKOUT}}{}{\StopCensoring}
+% https://tex.stackexchange.com/questions/4830/how-to-hide-todo-notes-without-deleting-them-manually
+\ifthenelse{\boolean{TODO}}{}{\presetkeys{todonotes}{disable}{}}
+
 %————————————————————————————————————————————————————————————————————————————
 %									Anfang Dokument
 %————————————————————————————————————————————————————————————————————————————
