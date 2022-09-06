@@ -58,11 +58,51 @@
 	\end{censorenv}
 	
 	
-	\xblackout{Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.} \blackout{Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\\}
+	\xblackout{Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.} \blackout{Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.}
 	
-	Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh \censor{euismod tincidunt} ut laoreet dolore magna aliquam erat volutpat.\\
+	Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh \censor{euismod tincidunt} ut laoreet dolore magna aliquam erat volutpat.
 	
 	Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
 	
 	\section{Test Online Quellen Zitat}
 	Wichtig bei Onlinequellen immer eine Kopie, unter dem Ordner Test \hk{1\_Sources} speichern. Am besten als Websitedatei und nochmal als PDF.\cite{qs.koeln}
+	
+	
+	\section{Test große Anführungszeichen z.B. für die Einleitung}
+	\begin{fancyquotes}
+		\vspace{0.5cm} \\
+		\label{sec:einleitungsbeispiel}\lipsum[50]\\
+		\vspace{0.5cm}
+	\end{fancyquotes}
+	
+	
+	\section{Test Formatierung Forschungsfragen}
+	
+	% https://www.bachelorprint.de/wissenschaftliches-schreiben/forschungsfrage-formulieren/
+	% https://www.utb.de/doi/book/10.36198/9783838554389
+	% EDU Zugang bei UTB mit DHBW Login möglich!
+	
+	\forschungsfrage{Primäre}{Gestaltung}{Welche Maßnahmen/Strategien sollten Großunternehmen ergreifen, wenn sie auf dem chinesischen Markt erfolgreich bestehen wollen?}
+	
+	\vspace{1cm}
+	
+	\begin{UmgebungForschungsfrage}[Gestaltung]
+		Welche Maßnahmen/Strategien sollten Großunternehmen ergreifen, wenn sie auf dem chinesischen Markt erfolgreich bestehen wollen?
+	\end{UmgebungForschungsfrage}
+
+
+	\section{Coole Formel mit Quelle}
+	\begin{equation}\label{eq:arithStand}
+		\sigma _{a} := \sqrt{\frac{1}{n}\sum^n_{j=1}(x_j-\bar x_{n})^2}
+		\vadjust{\smallskip \hbox to \linewidth{\hfill\autocite[vgl. ][21]{henzeStochastikFuerEinsteiger.2021}}}
+	\end{equation} \eqdesc{Berechnung der arithmetischen Standardabweichung}
+
+	\section{Methodenspektrum}
+	Vielen Dank an Krissi für das Methodenspektrum in TikZ.
+	\begin{figure}[h]
+		\centering
+		\resizebox{0.65\linewidth}{!}{%
+			\input{./zfiles/TeX/Graph/Methodenspektrum}
+		}
+		\caption{\label{fig:Methodenspektrum} Methodenspektrum der (Wirtschafts-)Informatik \autocite[vgl.][14]{wildeMethodenspektrumWirtschaftsinformatikUeberblick.2006}}
+	\end{figure}

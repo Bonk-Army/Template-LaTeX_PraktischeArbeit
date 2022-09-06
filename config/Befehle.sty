@@ -38,7 +38,19 @@
 	\addtocounter{footnote}{-1}%
 	\endgroup
 }
-
+\newcommand{\forschungsfrage}[3]{
+	\vspace{0.2cm}
+	\begin{tcolorbox}[colback=gray!30,%gray background
+		colframe=black,% black frame colour
+		width=\linewidth,% Use 5cm total width,
+		arc=3mm, auto outer arc,
+		]
+		\begin{centering}
+			\textbf{#1 Forschungsfrage (#2)} \vspace{0.2cm} \\
+			#3
+		\end{centering}
+	\end{tcolorbox}
+}
 %————————————————————————————————————————————————————————————————————————————
 %                               Big Quotes
 % https://tex.stackexchange.com/questions/277777/block-quote-with-big-quotation-marks-in-margin
@@ -73,6 +85,16 @@
 \newenvironment{censorenv}%
 {\setbox0=\vbox\bgroup}%
 {\egroup\censorbox{\box0}}
+
+% https://latex.org/forum/viewtopic.php?t=2750
+\newenvironment{keywords}{
+	\begin{center}
+		\centering
+		%\textbf{K E Y W O R D S} \\
+		\textbf{Keywords} \\
+	}{
+	\end{center}
+}
 %———————————————————————————————————————————————————————————————————————————
 %								Spezial Tabelle
 %———————————————————————————————————————————————————————————————————————————
