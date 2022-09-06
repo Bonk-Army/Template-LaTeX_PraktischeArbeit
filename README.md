@@ -1,4 +1,4 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build LaTeX document](https://github.com/Bonk-Army/Template-LaTeX_PraktischeArbeit/actions/workflows/build_latex.yml/badge.svg?branch=master)](https://github.com/Bonk-Army/Template-LaTeX_PraktischeArbeit/actions/workflows/build_latex.yml)
 
 
 # Grundlage 
